@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // ✅ TestNG for running tests
+    testImplementation 'org.testng:testng:7.10.2'
+
+    // ✅ SLF4J simple logger for logging
+    testImplementation 'org.slf4j:slf4j-simple:2.0.9'
+
+    // ✅ Selenium Java bindings for browser automation
+    testImplementation 'org.seleniumhq.selenium:selenium-java:4.21.0'
+
+    // ✅ ExtentReports for test reporting
+    testImplementation 'com.aventstack:extentreports:5.1.1'
+
+    // ✅ Apache POI for reading/writing Excel files
+    testImplementation 'org.apache.poi:poi:5.2.5'
+
+    // ✅ Apache POI OOXML for .xlsx support (optional but usually required)
+    testImplementation 'org.apache.poi:poi-ooxml:5.2.5'
+
+    // ✅ Lorem Ipsum generator for dummy data
+    testImplementation 'com.thedeanda:lorem:2.2'
+
+}
+
+test {
+    useTestNG()
+}

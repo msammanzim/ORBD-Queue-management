@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test name="All Pages Tests">
+        <classes>
+            <class name="com.orangebd.queuedev.pages.testCase.LoginTest"></class>
+            <class name="com.orangebd.queuedev.pages.testCase.HomePageTest"></class>
+            <class name="com.orangebd.queuedev.pages.testCase.ServiceTest"></class>
+            <class name="com.orangebd.queuedev.pages.testCase.InqueryTest"></class>
+            <class name="com.orangebd.queuedev.pages.testCase.AvailServiceTest"></class>
+            <class name="com.orangebd.queuedev.pages.testCase.ComplaintTest"></class>
+        </classes>
+    </test>
+</suite>
