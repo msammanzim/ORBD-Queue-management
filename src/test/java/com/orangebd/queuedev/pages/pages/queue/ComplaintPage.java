@@ -1,10 +1,10 @@
-package com.orangebd.queuedev.pages.pages;
+package com.orangebd.queuedev.pages.pages.queue;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class AvailServicePage extends BasePage{
+public class ComplaintPage extends BasePage {
     public final By nameField=By.xpath("//input[@placeholder='i.e John doe']");
     public final By emailField= By.xpath("//input[@placeholder='i.e example@xyz.com']");
     public final By mobileField=By.xpath("//input[@placeholder='i.e 9212345671']");
@@ -15,63 +15,69 @@ public class AvailServicePage extends BasePage{
     private final By priprity=By.xpath("//div[normalize-space()='Regular']");
     private final By chekBox=By.xpath("//input[@id='terms']");
     private final By next=By.xpath("//button[normalize-space()='Next']");
-    //private final By generateToken=By.xpath("//button[@id='generate-token']");
+   // private final By generateToken=By.xpath("//button[@id='generate-token']");
+    private final By complaint= By.xpath("//input[@placeholder='i.e example@xyz.com']");
+    private final By details=By.xpath("//textarea[@placeholder='i.e Complain Details']");
     public final By generateToken=By.xpath("//button[@id='generate-token']");
-    public AvailServicePage(WebDriver driver) {
+    public ComplaintPage(WebDriver driver) {
         super(driver);
     }
-    public boolean isServiceDisplayed() {
-        waitForElement(availservice);
-        WebElement element = driver.findElement(availservice);
+    public boolean isComplaintDisplayed() {
+        waitForElement(complaint);
+        WebElement element = driver.findElement(complaint);
+        //return element.isDisplayed();
         return element.isDisplayed();
     }
-    public AvailServicePage ernterName(String name) {
+
+    public ComplaintPage ernterName(String name) {
         waitForElement(nameField);
         getWebElement(nameField).sendKeys(name);
         return this;
     }
-    public AvailServicePage ernterEmail(String email) {
+    public ComplaintPage ernterEmail(String email) {
         waitForElement(emailField);
         getWebElement(emailField).sendKeys(email);
         return this;
     }
-    public AvailServicePage mobileField(String mobile) {
+    public ComplaintPage mobileField(String mobile) {
         waitForElement(mobileField);
         getWebElement(mobileField).sendKeys(mobile);
         return this;
     }
-    public AvailServicePage selectMale(){
+    public ComplaintPage selectMale(){
         waitForElement(male);
         getWebElement(male).click();
         return this;
     }
-    public AvailServicePage clcikservice(){
+    public ComplaintPage clcikservice(){
         waitForElement(service);
         getWebElement(service).click();
         return this;
     }
-    public AvailServicePage clickPriority(){
+    public ComplaintPage clickPriority(){
         waitForElement(priprity);
         getWebElement(priprity).click();
         return this;
     }
-    public AvailServicePage clcikCheckBox(){
+    public ComplaintPage complaintDetails(String Detils){
+        waitForElement(details);
+        getWebElement(details);
+        return this;
+    }
+    public ComplaintPage clcikCheckBox(){
         waitForElement(chekBox);
         getWebElement(chekBox).click();
         return this;
     }
-    public AvailServicePage clcikNext(){
+    public ComplaintPage clcikNext(){
         waitForElement(next);
         getWebElement(next).click();
         return this;
     }
-    public Congratulations clcikGenerstetoken(){
+    public HomePage generateToken() throws InterruptedException {
         waitForElement(generateToken);
         getWebElement(generateToken).click();
-        return getInstance(Congratulations.class);
+        Thread.sleep(4000);
+        return getInstance(HomePage.class);
     }
-
-
-
-
 }

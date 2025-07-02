@@ -1,10 +1,10 @@
-package com.orangebd.queuedev.pages.pages;
+package com.orangebd.queuedev.pages.pages.queue;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class ServicePage extends BasePage{
+public class ServicePage extends BasePage {
     private final By service= By.xpath("//h1[@class='text-[26px] lg:text-[54px] font-semibold text-gray-900']");
     private final By inquery=By.xpath("//i[@class='text-[#FFF] text-[26px] lg:text-[54px] far fa-messages-question']");
     private final By availservice=By.xpath("//h1[normalize-space()='Avail Service']");

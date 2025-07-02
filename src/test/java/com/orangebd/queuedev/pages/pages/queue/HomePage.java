@@ -1,4 +1,4 @@
-package com.orangebd.queuedev.pages.pages;
+package com.orangebd.queuedev.pages.pages.queue;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
