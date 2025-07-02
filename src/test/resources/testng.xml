@@ -8,6 +8,14 @@
             <class name="com.orangebd.queuedev.pages.testCase.InqueryTest"></class>
             <class name="com.orangebd.queuedev.pages.testCase.AvailServiceTest"></class>
             <class name="com.orangebd.queuedev.pages.testCase.ComplaintTest"></class>
+            <class name="newagent.agentmanagement.testCases.AgentLoginTestCase"></class>
+            <class name="newagent.agentmanagement.testCases.AgentDashboardTestCase"></class>
+
         </classes>
+<!--        <packages>-->
+<!--            <package name="com.orangebd.queuedev.pages.testCase" />-->
+<!--            <package name="newagent.agentmanagement.testCases" />-->
+<!--        </packages>-->
+
     </test>
 </suite>

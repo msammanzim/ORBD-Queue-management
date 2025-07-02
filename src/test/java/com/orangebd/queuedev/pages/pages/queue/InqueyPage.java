@@ -1,10 +1,10 @@
-package com.orangebd.queuedev.pages.pages;
+package com.orangebd.queuedev.pages.pages.queue;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class InqueyPage extends BasePage{
+public class InqueyPage extends BasePage {
     public final By nameField=By.xpath("//input[@placeholder='i.e John doe']");
     public final By emailField= By.xpath("//input[@placeholder='i.e example@xyz.com']");
     public final By mobileField=By.xpath("//input[@placeholder='i.e 9212345671']");
@@ -66,10 +66,11 @@ public class InqueyPage extends BasePage{
         getWebElement(btnNext).click();
         return this;
     }
-    public Congratulations generateToken(){
+    public HomePage generateToken() throws InterruptedException {
         waitForElement(generateToken);
         getWebElement(generateToken).click();
-        return getInstance(Congratulations.class);
+        Thread.sleep(4000);
+        return getInstance(HomePage.class);
     }
 
 

@@ -1,15 +1,10 @@
-package com.orangebd.queuedev.pages.pages;
+package com.orangebd.queuedev.pages.pages.queue;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-
-public class ComplaintPage extends BasePage{
+public class AvailServicePage extends BasePage {
     public final By nameField=By.xpath("//input[@placeholder='i.e John doe']");
     public final By emailField= By.xpath("//input[@placeholder='i.e example@xyz.com']");
     public final By mobileField=By.xpath("//input[@placeholder='i.e 9212345671']");
@@ -20,83 +15,64 @@ public class ComplaintPage extends BasePage{
     private final By priprity=By.xpath("//div[normalize-space()='Regular']");
     private final By chekBox=By.xpath("//input[@id='terms']");
     private final By next=By.xpath("//button[normalize-space()='Next']");
-   // private final By generateToken=By.xpath("//button[@id='generate-token']");
-    private final By complaint= By.xpath("//input[@placeholder='i.e example@xyz.com']");
-    private final By details=By.xpath("//textarea[@placeholder='i.e Complain Details']");
+    //private final By generateToken=By.xpath("//button[@id='generate-token']");
     public final By generateToken=By.xpath("//button[@id='generate-token']");
-    public ComplaintPage(WebDriver driver) {
+    public AvailServicePage(WebDriver driver) {
         super(driver);
     }
-    public boolean isComplaintDisplayed() {
-        waitForElement(complaint);
-        WebElement element = driver.findElement(complaint);
-        //return element.isDisplayed();
+    public boolean isServiceDisplayed() {
+        waitForElement(availservice);
+        WebElement element = driver.findElement(availservice);
         return element.isDisplayed();
     }
-
-    public ComplaintPage ernterName(String name) {
+    public AvailServicePage ernterName(String name) {
         waitForElement(nameField);
         getWebElement(nameField).sendKeys(name);
         return this;
     }
-    public ComplaintPage ernterEmail(String email) {
+    public AvailServicePage ernterEmail(String email) {
         waitForElement(emailField);
         getWebElement(emailField).sendKeys(email);
         return this;
     }
-    public ComplaintPage mobileField(String mobile) {
+    public AvailServicePage mobileField(String mobile) {
         waitForElement(mobileField);
         getWebElement(mobileField).sendKeys(mobile);
         return this;
     }
-    public ComplaintPage selectMale(){
+    public AvailServicePage selectMale(){
         waitForElement(male);
         getWebElement(male).click();
         return this;
     }
-    public ComplaintPage clcikservice(){
+    public AvailServicePage clcikservice(){
         waitForElement(service);
         getWebElement(service).click();
         return this;
     }
-    public ComplaintPage clickPriority(){
+    public AvailServicePage clickPriority(){
         waitForElement(priprity);
         getWebElement(priprity).click();
         return this;
     }
-    public ComplaintPage complaintDetails(String Detils){
-        waitForElement(details);
-        getWebElement(details);
-        return this;
-    }
-    public ComplaintPage clcikCheckBox(){
+    public AvailServicePage clcikCheckBox(){
         waitForElement(chekBox);
         getWebElement(chekBox).click();
         return this;
     }
-    public ComplaintPage clcikNext(){
+    public AvailServicePage clcikNext(){
         waitForElement(next);
         getWebElement(next).click();
         return this;
     }
-    public Congratulations clickGenerateToken() {
-        By generateToken = By.xpath("//button[@id='generate-token']");
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-
-        // Wait for element
-        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(generateToken));
-
-        // Scroll only if found (element not null)
-        if (element != null) {
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("arguments[0].scrollIntoView(true);", element);
-
-            element.click();
-        } else {
-            throw new RuntimeException("Generate Token button not found!");
-        }
-
-        return getInstance(Congratulations.class);
+    public HomePage generateToken() throws InterruptedException {
+        waitForElement(generateToken);
+        getWebElement(generateToken).click();
+        Thread.sleep(4000);
+        return getInstance(HomePage.class);
     }
+
+
+
+
 }

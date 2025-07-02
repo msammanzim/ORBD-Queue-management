@@ -1,7 +1,6 @@
 package com.orangebd.queuedev.pages.testCase;
 
-import com.orangebd.queuedev.pages.pages.*;
-import org.testng.Assert;
+import com.orangebd.queuedev.pages.pages.queue.*;
 import org.testng.annotations.Test;
 
 public class InqueryTest extends BaseTest{
@@ -13,16 +12,16 @@ public class InqueryTest extends BaseTest{
     Congratulations congratulations;
     @Test(priority = 1)
     //click the service inquery
-    public void fillUpInqueryField(){
-        congratulations=page.getInstance(LoginPage.class)
+    public void fillUpInqueryField() throws InterruptedException {
+        homePage=page.getInstance(LoginPage.class)
                 .enterEmail("butig@leaps.ph")
                 .enterPassword("butig")
                 .clickLogin()
                 .clickGetStarted()
                 .clickInquery()
-                        .ernterName("hello")
+                        .ernterName("p")
                                 .ernterEmail("hello@gmail.com")
-                                        .mobileField("09552222222")
+                                        .mobileField("09552222822")
                 .selectMale()
                 .selectPriority()
                 .inquaryDetails("hello this is automation script")

@@ -1,6 +1,6 @@
 package com.orangebd.queuedev.pages.testCase;
 
-import com.orangebd.queuedev.pages.pages.*;
+import com.orangebd.queuedev.pages.pages.queue.*;
 import org.testng.annotations.Test;
 
 public class AvailServiceTest extends BaseTest{
@@ -12,8 +12,8 @@ public class AvailServiceTest extends BaseTest{
     Congratulations congratulations;
     @Test(priority = 1)
     //click the service inquery
-    public void fillUpInqueryField(){
-        congratulations=page.getInstance(LoginPage.class)
+    public void fillUpInqueryField() throws InterruptedException {
+        homePage=page.getInstance(LoginPage.class)
                 .enterEmail("butig@leaps.ph")
                 .enterPassword("butig")
                 .clickLogin()
@@ -27,7 +27,7 @@ public class AvailServiceTest extends BaseTest{
                 .clickPriority()
                 .clcikCheckBox()
                 .clcikNext()
-                .clcikGenerstetoken();
+                .generateToken();
 ////                .clickInquery()
 ////                .ernterName("hello")
 ////                .ernterEmail("hello@gmail.com")

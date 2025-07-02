@@ -1,8 +1,8 @@
 package com.orangebd.queuedev.pages.testCase;
 
-import com.orangebd.queuedev.pages.pages.HomePage;
-import com.orangebd.queuedev.pages.pages.LoginPage;
-import com.orangebd.queuedev.pages.pages.ServicePage;
+import com.orangebd.queuedev.pages.pages.queue.HomePage;
+import com.orangebd.queuedev.pages.pages.queue.LoginPage;
+import com.orangebd.queuedev.pages.pages.queue.ServicePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

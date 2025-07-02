@@ -1,6 +1,6 @@
 package com.orangebd.queuedev.pages.testCase;
 
-import com.orangebd.queuedev.pages.pages.*;
+import com.orangebd.queuedev.pages.pages.queue.*;
 import org.testng.annotations.Test;
 
 public class ComplaintTest extends BaseTest {
@@ -14,8 +14,8 @@ public class ComplaintTest extends BaseTest {
 
     @Test(priority = 1)
     //click the service inquery
-    public void fillUpInqueryField() {
-        congratulations = page.getInstance(LoginPage.class)
+    public void fillUpInqueryField() throws InterruptedException {
+        homePage = page.getInstance(LoginPage.class)
                 .enterEmail("butig@leaps.ph")
                 .enterPassword("butig")
                 .clickLogin()
@@ -30,6 +30,6 @@ public class ComplaintTest extends BaseTest {
                 .complaintDetails("Hay")
                 .clcikCheckBox()
                 .clcikNext()
-                .clickGenerateToken();
+                .generateToken();
     }
 }

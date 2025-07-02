@@ -1,4 +1,5 @@
-package com.orangebd.queuedev.pages.pages;
+package com.orangebd.queuedev.pages.pages.queue;
+import newagent.agentmanagement.pages.AgentLoginPage;
 import com.orangebd.queuedev.pages.utill.General;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
