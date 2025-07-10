@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.JavascriptExecutor;
 
 import java.util.List;
 
@@ -46,6 +47,23 @@ public class BasePage extends Page {
             wait.until(ExpectedConditions.presenceOfElementLocated(locator));
         } catch (Exception e) {
             System.out.println(locator.toString() + " element not found during wait.");
+        }
+    }
+
+    public void waitForElementClickable(By locator) {
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(locator));
+        } catch (Exception e) {
+            System.out.println(locator.toString() + " element not clickable during wait.");
+        }
+    }
+
+    public void clickWithJS(WebElement element) {
+        try {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].click();", element);
+        } catch (Exception e) {
+            System.out.println("JavaScript click failed: " + e.getMessage());
         }
     }
 }

@@ -1,46 +1,162 @@
 package newagent.agentmanagement.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class AgentDashBoard extends BasePage {
-    private final By pfofile= By.xpath("//img[@alt='image']");
-    private final By reserve=By.xpath("//div[@class='justify-between w-full h-full p-2 flex items-center rounded-xl rounded-[20px] border-[2px] border-[solid] border-[rgba(255,255,255,0.81)]']");
-    private final By call=By.xpath("//body/div[@id='__nuxt']/div[@class='min-h-screen']/main/div[@class='min-h-[calc(100vh-75px)] flex flex-col justify-between items-center py-[10px]']/div[@class='h-full md:h-[calc(100vh-95px)] w-full px-3 flex flex-wrap flex items-center justify-center']/div[1]");
-    private final By start=By.xpath("//body/div[@id='__nuxt']/div[@class='min-h-screen']/main/div[@class='min-h-[calc(100vh-75px)] flex flex-col justify-between items-center py-[10px]']/div[@class='h-full md:h-[calc(100vh-95px)] w-full px-3 flex flex-wrap flex items-center justify-center']/div[1]");
+
+    private final By profile = By.xpath("//img[@alt='image']");
+    private final By reserve = By.xpath("//button[contains(text(), 'Reserve') or .='Reserve']");
+    private final By call = By.xpath("//*[contains(text(), 'Call')]");
+    private final By start = By.xpath("//*[contains(text(), 'Start')]");
+    private final By complete = By.xpath("//*[contains(text(), 'Complete')]");
+    private final By comment = By.xpath("//textarea[@class='w-full border-none outline-none focus:outline-none']");
+    private final By submit = By.xpath("//button[normalize-space()='Submit']");
+    private final By notoken = By.xpath("//p[normalize-space()='No Token Reserved']");
+
     public AgentDashBoard(WebDriver driver) {
         super(driver);
     }
 
-
-    public boolean isDisplayedPfofile() {
-        waitForElement(pfofile);
-        WebElement element = driver.findElement(pfofile);
-        return element.isDisplayed();
+    public boolean isDisplayedProfile() {
+        waitForElement(profile);
+        return getWebElement(profile).isDisplayed();
     }
 
-    public AgentDashBoard clcickReserve() throws InterruptedException {
-        waitForElement(reserve);
-        Thread.sleep(2000);
-        getWebElement(reserve).click();
-        waitForElement(call);
+    public boolean isWaitfor() {
+        waitForElement(profile);
+        return getWebElement(profile).isDisplayed();
+    }
+
+    public AgentDashBoard clickCounter() {
+        waitForElementClickable(By.xpath("//p[normalize-space()='Butig Counter 1']"));
+        getWebElement(By.xpath("//p[normalize-space()='Butig Counter 1']")).click();
         return this;
     }
-    public AgentDashBoard clickCall() throws InterruptedException {
-        waitForElement(call);
-        Thread.sleep(2000);
+
+    public boolean isNoTokenFound() {
+        waitForElement(notoken);
+        return getWebElement(notoken).isDisplayed();
+    }
+
+    public boolean isStartButtonVisible() {
+        try {
+            waitForElement(start);
+            return getWebElement(start).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isCompleteButtonVisible() {
+        try {
+            waitForElement(complete);
+            return getWebElement(complete).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isCommentFieldVisible() {
+        try {
+            waitForElement(comment);
+            return getWebElement(comment).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isSubmitButtonVisible() {
+        try {
+            waitForElement(submit);
+            return getWebElement(submit).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public AgentDashBoard clickReserve() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+        try {
+            // Wait for page to be fully loaded
+            wait.until(webDriver -> ((JavascriptExecutor) webDriver)
+                    .executeScript("return document.readyState").equals("complete"));
+
+            // Try multiple fallback locators
+            By[] reserveLocators = new By[] {
+                    By.xpath("//button[contains(text(), 'Reserve')]"),
+                    By.xpath("//*[text()='Reserve']"),
+                    By.xpath("//button[normalize-space()='Reserve']"),
+                    By.xpath("//div[contains(@class, 'reserve')]//button")
+            };
+
+            boolean clicked = false;
+
+            for (By locator : reserveLocators) {
+                try {
+                    wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+                    wait.until(ExpectedConditions.elementToBeClickable(locator));
+
+                    WebElement reserveButton = driver.findElement(locator);
+
+                    // Scroll and click
+                    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", reserveButton);
+                    Thread.sleep(500); // Optional: Just to visually see in UI
+
+                    reserveButton.click();
+                    clicked = true;
+                    break;
+
+                } catch (Exception e) {
+                    System.out.println("Locator failed: " + locator.toString());
+                }
+            }
+
+            if (!clicked) {
+                throw new RuntimeException("Reserve button not found with known locators.");
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to click Reserve button. Reason: " + e.getMessage(), e);
+        }
+
+        return this;
+    }
+
+    public AgentDashBoard clickCall() {
+        waitForElementClickable(call);
         getWebElement(call).click();
         return this;
     }
-    public AgentDashBoard clcikStart() throws InterruptedException {
-        waitForElement(start);
+
+    public AgentDashBoard clickStart() {
+        waitForElementClickable(start);
         getWebElement(start).click();
-        Thread.sleep(3000);
         return this;
     }
 
+    public AgentDashBoard clickComplete() {
+        waitForElementClickable(complete);
+        getWebElement(complete).click();
+        return this;
+    }
 
+    public AgentDashBoard commentText() {
+        waitForElement(comment);
+        WebElement commentBox = getWebElement(comment);
+        commentBox.clear();
+        commentBox.sendKeys("hello");
+        return this;
+    }
 
-
+    public AgentDashBoard clickSubmit() {
+        waitForElementClickable(submit);
+        getWebElement(submit).click();
+        return this;
+    }
 }
