@@ -3,6 +3,8 @@ package newagent.agentmanagement.testCases;
 import newagent.agentmanagement.pages.BasePage;
 import newagent.agentmanagement.pages.Page;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+// or import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -13,7 +15,8 @@ public class BaseTest {
 
     @BeforeMethod
     public void setupBrowser() {
-        driver = new FirefoxDriver();
+        driver = new ChromeDriver();
+       // driver=new FirefoxDriver();// or FirefoxDriver()
         driver.manage().window().maximize();
         driver.get("https://queue.ph.orangebd.com/agent-login");
         page = new BasePage(driver);
